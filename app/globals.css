@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-fcu-primary-50: oklch(86.62% 0.048 227.58);
+  --color-fcu-primary-100: oklch(82.06% 0.081 224.86);
+  --color-fcu-primary-200: oklch(73.35% 0.094 222.94);
+  --color-fcu-primary-300: oklch(64.75% 0.093 222.04);
+  --color-fcu-primary-400: oklch(56.29% 0.089 220.84);
+  --color-fcu-primary-500: oklch(47.85% 0.087 220.03);
+  --color-fcu-primary-600: oklch(44.33% 0.07 221.44);
+  --color-fcu-primary-700: oklch(40.84% 0.059 222.25);
+  --color-fcu-primary-800: oklch(37.59% 0.048 222.79);
+  --color-fcu-primary-900: oklch(34.23% 0.038 223.01);
+  --color-fcu-primary-950: oklch(32.65% 0.03 223.86);
+
+  --color-fcu-secondary-50: oklch(81.55% 0.121 108.81);
+  --color-fcu-secondary-100: oklch(80.46% 0.134 109.07);
+  --color-fcu-secondary-200: oklch(78.77% 0.146 109.32);
+  --color-fcu-secondary-300: oklch(76.71% 0.164 109.7);
+  --color-fcu-secondary-400: oklch(71.07% 0.131 109.31);
+  --color-fcu-secondary-500: oklch(65.84% 0.11 109.06);
+  --color-fcu-secondary-600: oklch(60.82% 0.091 108.81);
+  --color-fcu-secondary-700: oklch(55.68% 0.072 108.5);
+  --color-fcu-secondary-800: oklch(49.72% 0.053 108.18);
+  --color-fcu-secondary-900: oklch(44.63% 0.037 107.8);
+  --color-fcu-secondary-950: oklch(42.27% 0.025 107.42);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
