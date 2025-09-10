@@ -122,7 +122,7 @@ export default function IntercomDemo() {
           FCU Intercom Integration Test
         </h2>
         <p className='text-fcu-secondary-300'>
-          Official Intercom Messenger SDK Integration
+          Intercom Messenger SDK Integration
         </p>
       </div>
 
