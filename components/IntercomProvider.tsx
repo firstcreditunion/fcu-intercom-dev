@@ -18,6 +18,8 @@ interface IntercomProviderProps {
   userName?: string
   userEmail?: string
   userCreatedAt?: number
+  isAuthenticated?: boolean
+  onIntercomReady?: () => void
 }
 
 export default function IntercomProvider({
@@ -27,6 +29,8 @@ export default function IntercomProvider({
   userName,
   userEmail,
   userCreatedAt,
+  isAuthenticated = false,
+  onIntercomReady,
 }: IntercomProviderProps) {
   useEffect(() => {
     // Don't initialize if no app ID is provided
@@ -43,23 +47,40 @@ export default function IntercomProvider({
         app_id: appId,
       }
 
-      // Add user data if provided (for authenticated users)
-      if (userId) {
-        intercomConfig.user_id = userId
-      }
-      if (userName) {
-        intercomConfig.name = userName
-      }
-      if (userEmail) {
-        intercomConfig.email = userEmail
-      }
-      if (userCreatedAt) {
-        intercomConfig.created_at = userCreatedAt
+      // Add user data only if authenticated and provided
+      if (isAuthenticated) {
+        if (userId) {
+          intercomConfig.user_id = userId
+        }
+        if (userName) {
+          intercomConfig.name = userName
+        }
+        if (userEmail) {
+          intercomConfig.email = userEmail
+        }
+        if (userCreatedAt) {
+          intercomConfig.created_at = userCreatedAt
+        }
       }
 
       try {
         Intercom(intercomConfig)
-        console.log('Intercom initialized successfully')
+        console.log(
+          'Intercom initialized successfully',
+          isAuthenticated ? 'with user data' : 'anonymously'
+        )
+
+        // Show the homepage by default
+        setTimeout(() => {
+          if (window.Intercom) {
+            window.Intercom('showSpace', 'home')
+            console.log('Intercom homepage displayed')
+          }
+        }, 1000) // Small delay to ensure Intercom is fully loaded
+
+        if (onIntercomReady) {
+          onIntercomReady()
+        }
       } catch (error) {
         console.error('Failed to initialize Intercom:', error)
       }
@@ -77,7 +98,15 @@ export default function IntercomProvider({
         console.error('Error during Intercom cleanup:', error)
       }
     }
-  }, [appId, userId, userName, userEmail, userCreatedAt])
+  }, [
+    appId,
+    userId,
+    userName,
+    userEmail,
+    userCreatedAt,
+    isAuthenticated,
+    onIntercomReady,
+  ])
 
   return <>{children}</>
 }
