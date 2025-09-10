@@ -147,7 +147,7 @@ export default function IntercomDemo() {
           <div>
             <span className='text-gray-500'>SDK Version:</span>
             <span className='ml-2 font-medium text-black'>
-              @intercom/messenger-js-sdk
+              @intercom/messenger-js-sdk: v0.0.17
             </span>
           </div>
           <div>
